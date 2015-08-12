@@ -1,0 +1,16 @@
+#!/bin/bash
+
+group="trunk"
+
+if [ "$1" == "d" ] ; then
+    group = "dimitriev"
+fi
+
+conf=~/db/$group/$2.cnf
+
+if [ ! -r "$conf" ] ; then
+    echo "Config file $conf not found or is not readable"
+    exit 1
+fi
+
+mysql --defaults-file=$conf
