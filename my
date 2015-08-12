@@ -23,7 +23,7 @@ if [ $# -eq 0 ] ; then
 fi
 
 if [ "$2" == "$u" ] ; then
-    group = "$user"
+    group="$user"
 fi
 
 conf=~/db/$group/$1.cnf
