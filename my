@@ -1,15 +1,35 @@
 #!/bin/bash
 
-group="trunk"
+# Easy connect to mysql
 
-if [ "$1" == "d" ] ; then
-    group = "dimitriev"
+group="trunk"
+user=`whoami`
+u="${user:0:1}"
+
+HL='\033[1;33m'  # yellow
+ERR='\033[0;31m' # red
+HOK='\033[1;32m' # green
+NC='\033[0m'     # No Color
+
+function usage {
+    echo -e "Usage: ${HL}$0 <service> [<group>]${NC}
+    <service> is core, mms, stats etc
+    <group>   is ${HL}${u}${NC} for $user, ${HL}t${NC} for trunk (defaults to trunk)"
+}
+
+if [ $# -eq 0 ] ; then
+    usage;
+    exit 0
 fi
 
-conf=~/db/$group/$2.cnf
+if [ "$2" == "$u" ] ; then
+    group = "$user"
+fi
+
+conf=~/db/$group/$1.cnf
 
 if [ ! -r "$conf" ] ; then
-    echo "Config file $conf not found or is not readable"
+    echo -e "${ERR}Config file $conf not found or is not readable${NC}"
     exit 1
 fi
 
