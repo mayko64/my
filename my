@@ -10,6 +10,8 @@ HL='\033[1;33m'  # yellow
 ERR='\033[0;31m' # red
 HOK='\033[1;32m' # green
 NC='\033[0m'     # No Color
+BOLD=$(tput bold)
+NORMAL=$(tput sgr0)
 
 function usage {
     echo -e "Usage: ${HL}$0 <service> [<group>]${NC}
@@ -24,6 +26,10 @@ fi
 
 if [ "$2" == "$u" ] ; then
     group="$user"
+else
+    echo
+    echo -e ">>> ${ERR}${BOLD}ACHTUNG!!! USING TRUNK DATABASES${NORMAL}${NC} <<<"
+    echo
 fi
 
 conf=~/db/$group/$1.cnf
