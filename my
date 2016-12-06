@@ -26,6 +26,11 @@ fi
 
 if [ "$2" == "$u" ] ; then
     group="$user"
+elif [ "$2" == "l" ] ; then
+    group="local"
+    echo
+    echo -e "${BOLD}USING LOCAL DATABASES${NORMAL}"
+    echo
 else
     echo
     echo -e ">>> ${ERR}${BOLD}ACHTUNG!!! USING TRUNK DATABASES${NORMAL}${NC} <<<"
